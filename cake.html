@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Heaven | Cake Shop & Bakery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ====== BASIC STYLES ====== */
+        :root {
+            --pink: #FF6B8B;
+            --cream: #FFF5E1;
+            --brown: #8B4513;
+            --gold: #FFD700;
+            --light-pink: #FFE4E9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFF5E1 0%, #FFE4E9 100%);
+            color: #5D4037;
+            min-height: 100vh;
+        }
+        
+        /* ====== HEADER ====== */
+        .header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 3px 15px rgba(139, 69, 19, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--pink);
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            text-align: center;
+            color: var(--brown);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        /* ====== CATEGORIES ====== */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            flex-wrap: wrap;
+            background: white;
+            margin: 15px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background: var(--cream);
+            border: 2px solid var(--pink);
+            border-radius: 30px;
+            color: var(--brown);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: var(--pink);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* ====== PRODUCTS GRID ====== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.2);
+        }
+        
+        .product-image {
+            height: 220px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.4rem;
+            color: var(--brown);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .product-desc {
+            color: #795548;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .product-weight {
+            color: var(--brown);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            color: var(--pink);
+            font-weight: 700;
+        }
+        
+        .add-to-cart {
+            background: var(--pink);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--brown);
+            transform: scale(1.05);
+        }
+        
+        /* ====== CART ====== */
+        /* ====== CART ====== */
+.cart-icon {
+    position: fixed;
+    top: 250px;
+    left: 20px;
+    background: #8B4513; /* Dark brown - clearly visible */
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border: 3px solid white;
+    transition: all 0.3s;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    background: #A0522D;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #FF6B8B; /* Pink color */
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid white;
+}
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--brown);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            padding: 25px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.1);
+            transition: left 0.3s;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.active {
+            left: 0;
+        }
+        
+        /* ====== ADMIN PANEL ====== */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--brown);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+            z-index: 1000;
+        }
+        
+        .admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+        
+        .admin-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        /* ====== FORM STYLES ====== */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #FFE4E9;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #FFF9F0;
+        }
+        
+        .form-btn {
+            padding: 12px 25px;
+            background: var(--pink);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        /* ====== SPECIAL BANNER ====== */
+        .special-banner {
+            background: linear-gradient(135deg, var(--pink), #FF8E9E);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+        
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .categories {
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .category-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 180px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== CART ICON ====== -->
+    <div class="cart-icon" onclick="toggleCart()">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- ====== ADMIN TOGGLE ====== -->
+    <button class="admin-toggle" onclick="showAdminPanel()" title="Owner Access">
+        <i class="fas fa-user-chef"></i>
+    </button>
+
+    <!-- ====== HEADER ====== -->
+    <div class="header">
+        <div class="logo">Sweet Heaven</div>
+        <p class="tagline">🎂 Freshly Baked Happiness 🧁</p>
+    </div>
+
+    <!-- ====== SPECIAL BANNER ====== -->
+    <div class="special-banner">
+        <h2><i class="fas fa-birthday-cake"></i> Custom Cakes Available!</h2>
+        <p>Birthday • Wedding • Anniversary • Special Occasions</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">📱 Order Online | Same Day Delivery Available</p>
+    </div>
+
+    <!-- ====== CATEGORIES ====== -->
+    <div class="categories">
+        <button class="category-btn active" onclick="filterProducts('all')">All Items</button>
+        <button class="category-btn" onclick="filterProducts('birthday')">🎂 Birthday Cakes</button>
+        <button class="category-btn" onclick="filterProducts('wedding')">💍 Wedding Cakes</button>
+        <button class="category-btn" onclick="filterProducts('cupcakes')">🧁 Cupcakes</button>
+        <button class="category-btn" onclick="filterProducts('pastries')">🥐 Pastries</button>
+        <button class="category-btn" onclick="filterProducts('souvenirs')">🎁 Cake Souvenirs</button>
+        <button class="category-btn" onclick="filterProducts('custom')">🎨 Custom Cakes</button>
+    </div>
+
+    <!-- ====== PRODUCTS DISPLAY ====== -->
+    <div class="products-grid" id="productsContainer">
+        <!-- Products will load here -->
+    </div>
+
+    <!-- ====== CART SIDEBAR ====== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <h2 style="color: var(--pink); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-shopping-basket"></i> Your Order
+        </h2>
+        
+        <div id="cartItems">
+            <p style="text-align: center; color: #999; padding: 30px;">Your cart is empty</p>
+        </div>
+        
+        <div style="border-top: 2px solid #FFE4E9; padding-top: 20px; margin-top: 20px;">
+            <div style="display: flex; justify-content: space-between; font-size: 1.3rem; margin: 15px 0;">
+                <span style="font-weight: 600;">Total Amount:</span>
+                <span id="cartTotal" style="color: var(--pink); font-weight: 700;">₹0</span>
+            </div>
+            
+            <input type="text" id="customerName" placeholder="Your Name*" required>
+            <input type="text" id="customerPhone" placeholder="Phone Number*" required>
+            <textarea id="customerAddress" placeholder="Delivery Address*" rows="3" required></textarea>
+            <input type="text" id="deliveryDate" placeholder="Delivery Date (Optional)" onfocus="this.type='date'">
+            
+            <div style="background: #FFF9F0; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <p style="color: var(--brown); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> Same day delivery available
+                </p>
+            </div>
+            
+            <button class="form-btn" onclick="sendWhatsAppOrder()" style="background: #25D366; width: 100%;">
+                <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+            </button>
+            
+            <button class="form-btn" onclick="toggleCart()" style="background: #795548; width: 100%; margin-top: 10px;">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- ====== ADMIN PANEL ====== -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h2 style="color: var(--pink);"><i class="fas fa-utensils"></i> Sweet Heaven Admin</h2>
+                <button class="form-btn" onclick="hideAdminPanel()" style="background: #666;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h3 style="color: var(--brown); margin-bottom: 15px;">➕ Add New Item</h3>
+                    
+                    <input type="text" id="itemName" placeholder="Item Name*" required>
+                    <input type="number" id="itemPrice" placeholder="Price (₹)*" required>
+                    
+                    <select id="itemCategory">
+                        <option value="birthday">🎂 Birthday Cakes</option>
+                        <option value="wedding">💍 Wedding Cakes</option>
+                        <option value="cupcakes">🧁 Cupcakes</option>
+                        <option value="pastries">🥐 Pastries</option>
+                        <option value="souvenirs">🎁 Cake Souvenirs</option>
+                        <option value="custom">🎨 Custom Cakes</option>
+                    </select>
+                    
+                    <input type="text" id="itemImage" placeholder="Image URL*" required>
+                    
+                    <textarea id="itemDesc" placeholder="Description*" rows="3" required></textarea>
+                    
+                    <input type="text" id="itemWeight" placeholder="Weight/Size (e.g., 1kg, 12 pieces)">
+                    
+                    <button class="form-btn" onclick="addNewItem()" style="background: var(--pink); width: 100%;">
+                        <i class="fas fa-plus"></i> Add to Menu
+                    </button>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--brown); margin-bottom: 15px;">📋 Manage Items (<span id="totalItemsCount">8</span>)</h3>
+                    
+                    <div id="itemsList" style="max-height: 400px; overflow-y: auto; background: #FFF9F0; padding: 15px; border-radius: 8px;">
+                        <!-- Items list will appear here -->
+                    </div>
+                    
+                    <button class="form-btn" onclick="exportMenu()" style="background: #4CAF50; width: 100%; margin-top: 15px;">
+                        <i class="fas fa-file-export"></i> Export Menu Data
+                    </button>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #FFE4E9; border-radius: 8px;">
+                        <p style="color: var(--brown); font-size: 0.9rem;">
+                            <strong>Image Tips:</strong><br>
+                            1. Search cake images on Google<br>
+                            2. Right-click → "Copy image address"<br>
+                            3. Paste in Image URL field
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <div style="background: var(--brown); color: white; padding: 40px 20px; margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px; font-family: 'Dancing Script', cursive; font-size: 2rem;">Sweet Heaven</h3>
+                    <p style="line-height: 1.6; color: #FFF5E1;">
+                        Freshly baked cakes, pastries and desserts made with love and finest ingredients. Order online for quick delivery!
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--gold); margin-bottom: 15px;">📍 Shop Address</h4>
+                    <p style="margin: 8px 0; color: #FFF5E1;">
+                        <i class="fas fa-map-marker-alt"></i> 456 Bakery Lane,<br>
+                        Sweet Street, Mumbai 400001
+                    </p>
+                    <p style="margin: 8px 0; color: #FFF5E1;">
+                        <i class="fas fa-phone"></i> +91 9876543210
+                    </p>
+                    <p style="margin: 8px 0; color: #FFF5E1;">
+                        <i class="fas fa-clock"></i> 8:00 AM - 10:00 PM
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--gold); margin-bottom: 15px;">📱 Order Online</h4>
+                    <p style="margin: 8px 0;"><a href="#birthday" style="color: #FFF5E1; text-decoration: none;">🎂 Birthday Cakes</a></p>
+                    <p style="margin: 8px 0;"><a href="#wedding" style="color: #FFF5E1; text-decoration: none;">💍 Wedding Cakes</a></p>
+                    <p style="margin: 8px 0;"><a href="#custom" style="color: #FFF5E1; text-decoration: none;">🎨 Custom Orders</a></p>
+                    <p style="margin: 8px 0;"><a href="tel:+919876543210" style="color: #FFF5E1; text-decoration: none;">📞 Call Now</a></p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <p style="color: var(--gold);">
+                    © 2025 Sweet Heaven Cake Shop. Fresh cakes baked daily with ❤️
+                </p>
+                <p style="color: #FFF5E1; font-size: 0.9rem; margin-top: 10px;">
+                    📱 Order Online • 🚚 Same Day Delivery • 🎂 Custom Cakes
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ====== 1. INITIAL MENU DATA ======
+        let menuItems = [
+            {
+                id: 1,
+                name: "Chocolate Truffle Cake",
+                price: 699,
+                category: "birthday",
+                image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&fit=crop",
+                description: "Rich chocolate cake with truffle filling",
+                weight: "1 kg",
+                badge: "Bestseller"
+            },
+            {
+                id: 2,
+                name: "Red Velvet Cake",
+                price: 799,
+                category: "birthday",
+                image: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&fit=crop",
+                description: "Classic red velvet with cream cheese frosting",
+                weight: "1.5 kg",
+                badge: "Popular"
+            },
+            {
+                id: 3,
+                name: "Butterscotch Cake",
+                price: 599,
+                category: "birthday",
+                image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&fit=crop",
+                description: "Delicious butterscotch flavored cake",
+                weight: "1 kg"
+            },
+            {
+                id: 4,
+                name: "Royal Wedding Cake",
+                price: 2999,
+                category: "wedding",
+                image: "https://images.unsplash.com/photo-1519861531473-920034658307?w=400&fit=crop",
+                description: "Elegant 3-tier wedding cake",
+                weight: "5 kg",
+                badge: "Premium"
+            },
+            {
+                id: 5,
+                name: "Assorted Cupcakes",
+                price: 349,
+                category: "cupcakes",
+                image: "https://images.unsplash.com/photo-1508737804141-4c3b688e2546?w=400&fit=crop",
+                description: "Set of 12 assorted flavor cupcakes",
+                weight: "12 pieces"
+            },
+            {
+                id: 6,
+                name: "Chocolate Pastries",
+                price: 199,
+                category: "pastries",
+                image: "https://images.unsplash.com/photo-1559620192-032c64bc86af?w=400&fit=crop",
+                description: "Fresh chocolate pastries",
+                weight: "6 pieces"
+            },
+            {
+                id: 7,
+                name: "Cake Souvenir Box",
+                price: 449,
+                category: "souvenirs",
+                image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&fit=crop",
+                description: "Gift box with mini cakes",
+                weight: "Box of 8",
+                badge: "Gift"
+            },
+            {
+                id: 8,
+                name: "Custom Photo Cake",
+                price: 1299,
+                category: "custom",
+                image: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&fit=crop",
+                description: "Custom cake with photo printing",
+                weight: "2 kg",
+                badge: "Custom"
+            }
+        ];
+
+        // ====== 2. PASSWORD PROTECTION ======
+        const OWNER_PASSWORD = "cake123"; // Change this to your customer's password
+
+        function showAdminPanel() {
+            // Show password prompt first
+            const password = prompt("🔒 Enter Owner Password to Access Admin Panel:");
+            
+            if (password === OWNER_PASSWORD) {
+                document.getElementById('adminOverlay').style.display = 'flex';
+                updateItemsList();
+            } else {
+                alert("❌ Wrong password! Access denied.");
+            }
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('adminOverlay').style.display = 'none';
+        }
+
+        // ====== 3. CART SYSTEM ======
+        let cart = JSON.parse(localStorage.getItem('cakeCart')) || [];
+        
+        // ====== 4. DISPLAY PRODUCTS ======
+        function displayProducts(category = 'all') {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            
+            if (filteredItems.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                        <div style="font-size: 4rem; color: var(--pink);">🍰</div>
+                        <h3 style="color: var(--brown); margin: 20px 0;">No items in this category</h3>
+                        <p style="color: #795548;">Check back soon for new additions!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredItems.forEach(item => {
+                const productCard = `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${item.image}" alt="${item.name}"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&fit=crop'">
+                            ${item.badge ? `<div class="product-badge">${item.badge}</div>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
+                            <div class="product-desc">${item.description}</div>
+                            ${item.weight ? `<div class="product-weight"><i class="fas fa-weight-hanging"></i> ${item.weight}</div>` : ''}
+                            <div class="product-price">
+                                <div class="price">₹${item.price}</div>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+        }
+
+        // ====== 5. FILTER PRODUCTS ======
+        function filterProducts(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Display filtered products
+            displayProducts(category);
+        }
+
+        // ====== 6. CART FUNCTIONS ======
+        function addToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            const existing = cart.find(cartItem => cartItem.id === itemId);
+            
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    ...item,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showMessage(`${item.name} added to cart!`);
+        }
+        
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+            
+            // Save to localStorage
+            localStorage.setItem('cakeCart', JSON.stringify(cart));
+            
+            // Update cart display
+            const cartItems = document.getElementById('cartItems');
+            let cartTotal = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 30px;">Your cart is empty</p>';
+                document.getElementById('cartTotal').textContent = '₹0';
+                return;
+            }
+            
+            let cartHTML = '';
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                cartTotal += itemTotal;
+                
+                cartHTML += `
+                    <div style="display: flex; align-items: center; padding: 15px; background: #FFF9F0; border-radius: 10px; margin-bottom: 10px;">
+                        <div style="width: 60px; height: 60px; margin-right: 15px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <div style="font-weight: 600; color: var(--brown);">${item.name}</div>
+                            <div style="color: var(--pink); font-weight: 600;">₹${item.price} × ${item.quantity}</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--brown); margin: 0 15px;">₹${itemTotal}</div>
+                        <button onclick="removeFromCart(${index})" style="background: #ff4757; color: white; border: none; width: 35px; height: 35px; border-radius: 5px; cursor: pointer; flex-shrink: 0;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItems.innerHTML = cartHTML;
+            document.getElementById('cartTotal').textContent = `₹${cartTotal}`;
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+            showMessage('Item removed from cart');
+        }
+        
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        // ====== 7. WHATSAPP ORDER ======
+        function sendWhatsAppOrder() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            const date = document.getElementById('deliveryDate').value;
+            
+            if (!name || !phone || !address) {
+                alert('Please fill all required details!');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            let message = `*🎂 SWEET HEAVEN CAKE ORDER 🎂*\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `Name: ${name}\n`;
+            message += `Phone: ${phone}\n`;
+            message += `Address: ${address}\n`;
+            if (date) message += `Delivery Date: ${date}\n`;
+            message += `Order Time: ${new Date().toLocaleString()}\n\n`;
+            message += `*Order Items:*\n`;
+            message += '─'.repeat(30) + '\n';
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - ${item.quantity} × ₹${item.price}\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += '─'.repeat(30) + '\n';
+            message += `*Total Items:* ${cart.reduce((sum, item) => sum + item.quantity, 0)}\n`;
+            message += `*Total Amount:* ₹${total}\n\n`;
+            message += `*Delivery Instructions:* Same day delivery available\n`;
+            message += `*Shop Address:* 456 Bakery Lane, Sweet Street, Mumbai\n`;
+            message += `*Contact:* +91 9876543210`;
+            
+            const whatsappURL = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Reset cart
+            cart = [];
+            localStorage.removeItem('cakeCart');
+            updateCart();
+            toggleCart();
+            
+            // Clear form
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerAddress').value = '';
+            document.getElementById('deliveryDate').value = '';
+            
+            showMessage('Order sent! Check WhatsApp.');
+        }
+
+        // ====== 8. ADMIN PANEL FUNCTIONS ======
+        function addNewItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const price = parseInt(document.getElementById('itemPrice').value);
+            const category = document.getElementById('itemCategory').value;
+            const image = document.getElementById('itemImage').value.trim();
+            const desc = document.getElementById('itemDesc').value.trim();
+            const weight = document.getElementById('itemWeight').value.trim();
+            
+            if (!name || !price || !image || !desc) {
+                alert('Please fill all required fields!');
+                return;
+            }
+            
+            const newId = menuItems.length > 0 ? Math.max(...menuItems.map(i => i.id)) + 1 : 1;
+            
+            menuItems.push({
+                id: newId,
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                description: desc,
+                weight: weight || 'Not specified'
+            });
+            
+            saveMenu();
+            displayProducts('all');
+            updateItemsList();
+            
+            alert(`"${name}" added to menu!`);
+            
+            // Clear form
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemPrice').value = '';
+            document.getElementById('itemImage').value = '';
+            document.getElementById('itemDesc').value = '';
+            document.getElementById('itemWeight').value = '';
+        }
+        
+        function updateItemsList() {
+            const container = document.getElementById('itemsList');
+            document.getElementById('totalItemsCount').textContent = menuItems.length;
+            
+            let html = '';
+            
+            if (menuItems.length === 0) {
+                html = '<p style="text-align: center; color: #999; padding: 20px;">No items in menu</p>';
+            } else {
+                menuItems.forEach(item => {
+                    html += `
+                        <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #FFE4E9; margin-bottom: 8px;">
+                            <div style="width: 50px; height: 50px; margin-right: 10px; border-radius: 5px; overflow: hidden; flex-shrink: 0;">
+                                <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="flex-grow: 1;">
+                                <div style="font-weight: 600; color: var(--brown); font-size: 0.9rem;">${item.name}</div>
+                                <div style="color: var(--pink); font-weight: 600; font-size: 0.85rem;">₹${item.price} | ${item.category}</div>
+                            </div>
+                            <button onclick="deleteItem(${item.id})" style="background: #ff4757; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function deleteItem(itemId) {
+            if (confirm('Delete this item from menu?')) {
+                menuItems = menuItems.filter(item => item.id !== itemId);
+                saveMenu();
+                displayProducts('all');
+                updateItemsList();
+                showMessage('Item deleted from menu');
+            }
+        }
+        
+        function exportMenu() {
+            const menuData = JSON.stringify(menuItems, null, 2);
+            const blob = new Blob([menuData], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sweet-heaven-menu.json';
+            a.click();
+            
+            // Show in popup
+            const popup = window.open('', '_blank');
+            popup.document.write('<html><head><title>Menu Export</title><style>body{font-family:Arial;padding:20px;background:#f5f5f5;}</style></head><body>');
+            popup.document.write('<h2>📋 Menu Data</h2>');
+            popup.document.write('<pre style="background:white;padding:20px;border-radius:10px;overflow:auto;">');
+            popup.document.write('let menuItems = ' + menuData + ';');
+            popup.document.write('</pre>');
+            popup.document.write('</body></html>');
+        }
+
+        // ====== 9. SAVE/LOAD FUNCTIONS ======
+        function saveMenu() {
+            localStorage.setItem('sweetHeavenMenu', JSON.stringify(menuItems));
+        }
+        
+        function loadMenu() {
+            const saved = localStorage.getItem('sweetHeavenMenu');
+            if (saved) {
+                try {
+                    menuItems = JSON.parse(saved);
+                } catch(e) {
+                    console.log("Using default menu");
+                }
+            }
+        }
+
+        // ====== 10. UTILITY FUNCTIONS ======
+        function showMessage(message) {
+            const msg = document.createElement('div');
+            msg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--pink);
+                color: white;
+                padding: 12px 25px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 3000;
+                animation: slideIn 0.3s;
+                font-weight: 600;
+            `;
+            msg.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(msg);
+            
+            setTimeout(() => {
+                msg.style.animation = 'slideOut 0.3s';
+                setTimeout(() => msg.remove(), 300);
+            }, 3000);
+        }
+
+        // ====== 11. INITIALIZE ======
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMenu();
+            displayProducts('all');
+            updateCart();
+            updateItemsList();
+            
+            // Add animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function(event) {
+                const cart = document.getElementById('cartSidebar');
+                const cartIcon = document.querySelector('.cart-icon');
+                
+                if (cart.classList.contains('active') && 
+                    !cart.contains(event.target) && 
+                    !cartIcon.contains(event.target)) {
+                    cart.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
